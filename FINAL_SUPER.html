@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HAHAHAHAHAHAH</title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: rgb(162, 199, 189);
+            height: 100%;
+        }
+
+        html {
+            height: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .ftextbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .row {
+            width: auto;
+        }
+
+        .ftext {
+            color: rgb(232, 245, 51);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        button {
+            background-color: rgb(16, 115, 122);
+            width: 90%;
+            height: 20%;
+            padding: 4px;
+            font-size: 30px;
+            border: rgb(57, 59, 57);
+            border-radius: 16px;
+            -webkit-box-shadow: 10px 10px 36px -6px rgba(95, 114, 125, 1);
+            -moz-box-shadow: 10px 10px 36px -6px rgba(95, 114, 125, 1);
+            box-shadow: 10px 10px 36px -6px rgba(95, 114, 125, 1);
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(39, 165, 174);
+        }
+
+        button:disabled,
+        button[disabled] {
+            background-color: rgb(189, 207, 189);
+            color: rgb(57, 59, 57);
+            cursor: default;
+        }
+
+        #ex {
+            font-size: 65px;
+        }
+        .author {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 8.5%;
+            height: 8.5%;
+            font-size: 20px;
+            color: rgb(226, 210, 145);
+            background-color:rgb(92, 175, 181);
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .author:hover {
+            background-color:rgb(105, 184, 189);
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <div class="ftextbox" id="box">
+        <div class="row">
+            <a href="https://www.instagram.com/ilwtdne/"><button class="author">artem_kr17</button></a>
+
+            <button class="ftext" id="buttonn">Lol BOhdan</button>
+            <h1 class="ftext" id="ex">0</h1>
+            <button class="ftext" id="buttonn2" disabled>UPDAAATE(x?)</button>
+            <button class="ftext" id="buttonn3" disabled>AUTOO CLICK(x?)</button>
+        </div>
+    </div>
+    <script>
+        let elem = document.querySelector('.ftext');
+        let elem_sec = document.getElementById('ex');
+        let box = document.getElementById('box');
+
+        let i = 1;
+        let mult = 1;
+        let mult_a = 1;
+        let mnozh = 50;
+        let mnozh_a = 75;
+        tumb = true;
+        tumb2 = true;
+        const eventHandler = (e) => {
+            e.preventDefault();
+
+            elem_sec.innerHTML = i;
+            i = i + 1 * mult;
+            if (Number(elem_sec.innerHTML) >= (mnozh * mult)) {
+                if ((Number(elem_sec.innerHTML) >= (mnozh_a * mult)) && tumb) {
+                    //box.insertAdjacentHTML('BEFOREEND', `<button class="ftext" id = "buttonn3">AUTOO CLICK(x${mult_a + 1})</button>`);
+                    let but_a = document.getElementById('buttonn3');
+                    but_a.innerHTML = `AUTOO CLICK(x${mult_a + 1})`;
+                    but_a.removeAttribute("disabled");
+                    but_a.addEventListener("click", autoHandler);
+                    tumb = false;
+                }
+                else if (tumb2) {
+                    // box.insertAdjacentHTML('BEFOREEND', `<button class="ftext" id = "buttonn2">UPDAAATE(x${mult + 1})</button>`);
+                    let but = document.getElementById('buttonn2');
+                    but.innerHTML = `UPDAAATE(x${mult + 1})`;
+                    but.removeAttribute("disabled");
+                    but.addEventListener("click", updateHandler);
+                    tumb2 = false;
+                }
+            }
+
+        }
+
+        const updateHandler = (e) => {
+            e.preventDefault();
+            i = i - Math.round(i * 0.25);
+            elem_sec.innerHTML = i;
+            mult++;
+            let butt = document.getElementById('buttonn2');
+            if (document.getElementById('buttonn3')) {
+                let butt2 = document.getElementById('buttonn3');
+                //butt2.remove();
+                butt2.setAttribute("disabled", "disabled");
+            }
+
+            //butt.remove();
+            butt.setAttribute("disabled", "disabled");
+            tumb = true;
+            tumb2 = true;
+
+        }
+        const autoHandler = (e) => {
+            e.preventDefault();
+            tumb = true;
+            tumb2 = true;
+            let butt2 = document.getElementById('buttonn3');
+            if (document.getElementById('buttonn2')) {
+                let butt = document.getElementById('buttonn2');
+                //butt.remove();
+                butt.setAttribute("disabled", "disabled");
+            }
+            //butt2.remove();
+            butt2.setAttribute("disabled", "disabled");
+            mult_a++;
+            setInterval(() => {
+                i = i + 1 * mult_a; elem_sec.innerHTML = i;
+                if (Number(elem_sec.innerHTML) >= (mnozh * mult)) {
+                    if ((Number(elem_sec.innerHTML) >= (mnozh_a * mult)) && tumb) {
+                        //box.insertAdjacentHTML('BEFOREEND', `<button class="ftext" id = "buttonn3">AUTOO CLICK(x${mult_a + 1})</button>`);
+                        let but_a = document.getElementById('buttonn3');
+                        but_a.innerHTML = `AUTOO CLICK(x${mult_a + 1})`;
+                        but_a.removeAttribute("disabled");
+                        but_a.addEventListener("click", autoHandler);
+                        tumb = false;
+                    }
+                    else if (tumb2) {
+                        // box.insertAdjacentHTML('BEFOREEND', `<button class="ftext" id = "buttonn2">UPDAAATE(x${mult + 1})</button>`);
+                        let but = document.getElementById('buttonn2');
+                        but.innerHTML = `UPDAAATE(x${mult + 1})`;
+                        but.removeAttribute("disabled");
+                        but.addEventListener("click", updateHandler);
+                        tumb2 = false;
+                    }
+                }
+            }, 1000);
+            i = i - Math.round(i * 0.75);
+            elem_sec.innerHTML = i;
+
+
+
+        }
+
+        elem.addEventListener("click", eventHandler);
+
+    </script>
+</body>
